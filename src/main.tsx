@@ -1,5 +1,6 @@
 import { createRoot } from "react-dom/client";
 import { App } from "./App.tsx";
+import { trackAppOpened } from "./tracking.ts";
 
 interface AppConfig {
   title: string;
@@ -10,6 +11,7 @@ async function loadConfig(): Promise<AppConfig> {
 }
 
 async function start(): Promise<void> {
+  trackAppOpened();
   const config = await loadConfig();
   const container = document.getElementById("root");
   if (!container) {
